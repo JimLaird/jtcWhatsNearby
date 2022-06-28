@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="jtcWhatsNearby.View.DetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fonthelper="clr-namespace:jtcWhatsNearby.Helpers"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:vm="clr-namespace:jtcWhatsNearby.ViewModel"
+    Title="{Binding Result.Name}"
+    ios:Page.UseSafeArea="True"
+    x:DataType="vm:DetailsViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Frame
+                Margin="20"
+                Padding="5"
+                Style="{StaticResource ResultsCard}">
+                <Grid
+                    ColumnDefinitions="*"
+                    RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                    RowSpacing="10">
+                    <Label Style="{StaticResource LabelBlack22}" Text="{Binding Result.Name}" />
+
+                    <VerticalStackLayout Grid.Row="1">
+                        <Label Style="{StaticResource LabelBlack18}" Text="Address:" />
+                        <Label Style="{StaticResource LabelRegular18}" Text="{Binding Result.Address}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="2">
+                        <Label Style="{StaticResource LabelBlack18}" Text="Type:" />
+                        <Label Style="{StaticResource LabelRegular18}" Text="{Binding Result.TypeList}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="3">
+                        <Label Style="{StaticResource LabelBlack18}" Text="Distance:" />
+                        <Label Style="{StaticResource LabelRegular18}" Text="{Binding Result.Distance, StringFormat='{0} m'}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="4">
+
+                        <Grid
+                            ColumnDefinitions="0.75*, 0.25*"
+                            ColumnSpacing="5"
+                            HorizontalOptions="FillAndExpand"
+                            RowSpacing="5">
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Style="{StaticResource LabelBlack18}"
+                                Text="Telephone:" />
+                            <ImageButton
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Command="{Binding CallCommand}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center">
+                                <ImageButton.Source>
+                                    <FontImageSource
+                                        FontFamily="MaterialIcons"
+                                        Glyph="{x:Static fonthelper:IconFont.Call}"
+                                        Color="{StaticResource Primary}" />
+                                </ImageButton.Source>
+                            </ImageButton>
+                        </Grid>
+                        <Label
+                            HorizontalOptions="StartAndExpand"
+                            Style="{StaticResource LabelRegular18}"
+                            Text="{Binding Result.PhoneNumber}"
+                            VerticalOptions="Center" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="5">
+
+                        <Grid
+                            ColumnDefinitions="0.75*,0.25*"
+                            ColumnSpacing="5"
+                            HorizontalOptions="FillAndExpand">
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Style="{StaticResource LabelBlack18}"
+                                Text="Website:" />
+                            <ImageButton
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Command="{Binding OpenBrowserCommand}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center">
+                                <ImageButton.Source>
+                                    <FontImageSource
+                                        FontFamily="MaterialIcons"
+                                        Glyph="{x:Static fonthelper:IconFont.Web}"
+                                        Color="{StaticResource Primary}" />
+                                </ImageButton.Source>
+                            </ImageButton>
+                        </Grid>
+                        <Label
+                            HorizontalOptions="StartAndExpand"
+                            Style="{StaticResource LabelRegular18}"
+                            Text="{Binding Result.Website}"
+                            VerticalOptions="Center" />
+                    </VerticalStackLayout>
+
+                </Grid>
+            </Frame>
+
+            <Button
+                Margin="20"
+                Command="{Binding OpenMapCommand}"
+                Style="{StaticResource OutlineButton}"
+                Text="Show On Map" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

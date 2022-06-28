@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="jtcWhatsNearby.View.SearchPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxco="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+    xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+    xmlns:dxdf="clr-namespace:DevExpress.Maui.DataForm;assembly=DevExpress.Maui.Editors"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:dxg="clr-namespace:DevExpress.Maui.DataGrid;assembly=DevExpress.Maui.DataGrid"
+    xmlns:dxsch="clr-namespace:DevExpress.Maui.Scheduler;assembly=DevExpress.Maui.Scheduler"
+    xmlns:fonthelper="clr-namespace:jtcWhatsNearby.Helpers"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:model="clr-namespace:jtcWhatsNearby.Model"
+    xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    xmlns:vm="clr-namespace:jtcWhatsNearby.ViewModel"
+    Title="SearchPage"
+    ios:Page.UseSafeArea="True"
+    x:DataType="vm:SearchPageViewModel">
+
+    <Grid Margin="5" RowDefinitions="Auto,Auto,*">
+        <Frame Margin="10" Padding="0">
+            <Grid
+                Margin="5"
+                ColumnDefinitions="0.62*,0.38*"
+                ColumnSpacing="5">
+                <!--<Entry
+                    Placeholder="Business Type"
+                    Style="{StaticResource BaseEntry}"
+                    Text="{Binding Type}" />
+
+                <Entry
+                    Grid.Column="1"
+                    Placeholder="Distance (m)"
+                    Style="{StaticResource BaseEntry}"
+                    Text="{Binding Radius}" />-->
+
+                <dxe:AutoCompleteEdit x:Name="autoType"
+                                      CharacterCasing="Lower"
+                                      Unfocused="autoType_Unfocused"        
+                    BackgroundColor="Transparent"
+                    BorderColor="{AppThemeBinding Light={StaticResource Primary},
+                                                  Dark={StaticResource PrimaryDark}}"
+                    BorderThickness="1"
+                    BoxPadding="15"
+                    ClearIconVisibility="Always"
+                    CornerMode="Cut"
+                    DropDownItemFontFamily="MulishRegular"
+                    DropDownItemFontSize="14"
+                    IsLabelFloating="False"
+                    LabelColor="{AppThemeBinding Light={StaticResource Primary},
+                                                 Dark={StaticResource PrimaryDark}}"
+                    LabelText="Search Type"
+                    SubmitIconVisibility="Never"
+                    Text="{Binding Type}"
+                    TextColor="{StaticResource LabelText}"
+                    TextFontFamily="MulishBlack"
+                    TextFontSize="16">
+                    <dxe:AutoCompleteEdit.ItemsSourceProvider>
+                        <dxe:FilteredItemsSourceProvider FilterComparisonType="CurrentCultureIgnoreCase" FilterMode="Contains">
+                            <dxe:FilteredItemsSourceProvider.SuggestionsSource>
+                                <scg:List x:TypeArguments="x:String">
+                                    <x:String>accounting</x:String>
+                                    <x:String>airport</x:String>
+                                    <x:String>amusement_park</x:String>
+                                    <x:String>aquarium</x:String>
+                                    <x:String>art_gallery</x:String>
+                                    <x:String>atm</x:String>
+                                    <x:String>bakery</x:String>
+                                    <x:String>bank</x:String>
+                                    <x:String>bar</x:String>
+                                    <x:String>beauty_salon</x:String>
+                                    <x:String>bicycle_store</x:String>
+                                    <x:String>book_store</x:String>
+                                    <x:String>bowling_alley</x:String>
+                                    <x:String>bus_station</x:String>
+                                    <x:String>cafe</x:String>
+                                    <x:String>campground</x:String>
+                                    <x:String>car_dealer</x:String>
+                                    <x:String>car_rental</x:String>
+                                    <x:String>car_repair</x:String>
+                                    <x:String>car_wash</x:String>
+                                    <x:String>casino</x:String>
+                                    <x:String>cemetery</x:String>
+                                    <x:String>church</x:String>
+                                    <x:String>city_hall</x:String>
+                                    <x:String>clothing_store</x:String>
+                                    <x:String>convenience_store</x:String>
+                                    <x:String>courthouse</x:String>
+                                    <x:String>dentist</x:String>
+                                    <x:String>department_store</x:String>
+                                    <x:String>doctor</x:String>
+                                    <x:String>drugstore</x:String>
+                                    <x:String>electrician</x:String>
+                                    <x:String>electronics_store</x:String>
+                                    <x:String>embassy</x:String>
+                                    <x:String>fire_station</x:String>
+                                    <x:String>florist</x:String>
+                                    <x:String>funeral_home</x:String>
+                                    <x:String>furniture_store</x:String>
+                                    <x:String>gas_station</x:String>
+                                    <x:String>gym</x:String>
+                                    <x:String>hair_care</x:String>
+                                    <x:String>hardware_store</x:String>
+                                    <x:String>hindu_temple</x:String>
+                                    <x:String>home_goods_store</x:String>
+                                    <x:String>hospital</x:String>
+                                    <x:String>insurance_agency</x:String>
+                                    <x:String>jewelry_store</x:String>
+                                    <x:String>laundry</x:String>
+                                    <x:String>lawyer</x:String>
+                                    <x:String>library</x:String>
+                                    <x:String>light_rail_station</x:String>
+                                    <x:String>liquor_store</x:String>
+                                    <x:String>local_government_office</x:String>
+                                    <x:String>locksmith</x:String>
+                                    <x:String>lodging</x:String>
+                                    <x:String>meal_delivery</x:String>
+                                    <x:String>meal_takeaway</x:String>
+                                    <x:String>mosque</x:String>
+                                    <x:String>movie_rental</x:String>
+                                    <x:String>movie_theater</x:String>
+                                    <x:String>moving_company</x:String>
+                                    <x:String>museum</x:String>
+                                    <x:String>night_club</x:String>
+                                    <x:String>painter</x:String>
+                                    <x:String>park</x:String>
+                                    <x:String>parking</x:String>
+                                    <x:String>pet_store</x:String>
+                                    <x:String>pharmacy</x:String>
+                                    <x:String>physiotherapist</x:String>
+                                    <x:String>plumber</x:String>
+                                    <x:String>police</x:String>
+                                    <x:String>post_office</x:String>
+                                    <x:String>primary_school</x:String>
+                                    <x:String>real_estate_agency</x:String>
+                                    <x:String>restaurant</x:String>
+                                    <x:String>roofing_contractor</x:String>
+                                    <x:String>rv_park</x:String>
+                                    <x:String>school</x:String>
+                                    <x:String>secondary_school</x:String>
+                                    <x:String>shoe_store</x:String>
+                                    <x:String>shopping_mall</x:String>
+                                    <x:String>spa</x:String>
+                                    <x:String>stadium</x:String>
+                                    <x:String>storage</x:String>
+                                    <x:String>store</x:String>
+                                    <x:String>subway_station</x:String>
+                                    <x:String>supermarket</x:String>
+                                    <x:String>synagogue</x:String>
+                                    <x:String>taxi_stand</x:String>
+                                    <x:String>tourist_attraction</x:String>
+                                    <x:String>train_station</x:String>
+                                    <x:String>transit_station</x:String>
+                                    <x:String>travel_agency</x:String>
+                                    <x:String>university</x:String>
+                                    <x:String>veterinary_care</x:String>
+                                    <x:String>zoo</x:String>
+                                </scg:List>
+                            </dxe:FilteredItemsSourceProvider.SuggestionsSource>
+                        </dxe:FilteredItemsSourceProvider>
+                    </dxe:AutoCompleteEdit.ItemsSourceProvider>
+                </dxe:AutoCompleteEdit>
+
+                <dxe:AutoCompleteEdit x:Name="autoRadius"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    BorderColor="{AppThemeBinding Light={StaticResource Primary},
+                                                  Dark={StaticResource PrimaryDark}}"
+                    BorderThickness="1"
+                                      Unfocused="autoRadius_Unfocused"
+                    BoxPadding="15"
+                    ClearIconVisibility="Always"
+                    CornerMode="Cut"
+                    DropDownItemFontFamily="MulishRegular"
+                    DropDownItemFontSize="14"
+                    IsLabelFloating="False"
+                    Keyboard="Numeric"
+                    LabelColor="{AppThemeBinding Light={StaticResource Primary},
+                                                 Dark={StaticResource PrimaryDark}}"
+                    LabelText="Distance (m)"
+                    SubmitIconVisibility="Never"
+                    Text="{Binding Radius}"
+                    TextColor="{StaticResource LabelText}"
+                    TextFontFamily="MulishBlack"
+                    TextFontSize="16">
+                    <dxe:AutoCompleteEdit.ItemsSourceProvider>
+                        <dxe:FilteredItemsSourceProvider FilterComparisonType="CurrentCultureIgnoreCase" FilterMode="Contains">
+                            <dxe:FilteredItemsSourceProvider.SuggestionsSource>
+                                <scg:List x:TypeArguments="x:String">
+                                    <x:String>200</x:String>
+                                    <x:String>500</x:String>
+                                    <x:String>1000</x:String>
+                                    <x:String>1500</x:String>
+                                    <x:String>2000</x:String>
+                                    <x:String>3000</x:String>
+                                    <x:String>4000</x:String>
+                                    <x:String>5000</x:String>
+                                    <x:String>6000</x:String>
+                                    <x:String>7500</x:String>
+                                    <x:String>8000</x:String>
+                                    <x:String>10000</x:String>
+                                    <x:String>15000</x:String>
+                                    <x:String>20000</x:String>
+                                </scg:List>
+                            </dxe:FilteredItemsSourceProvider.SuggestionsSource>
+                        </dxe:FilteredItemsSourceProvider>
+                    </dxe:AutoCompleteEdit.ItemsSourceProvider>
+                </dxe:AutoCompleteEdit>
+
+            </Grid>
+        </Frame>
+
+        <Button
+            Grid.Row="1"
+            Margin="8"
+            Command="{Binding GetPlacesCommand}"
+            IsEnabled="{Binding IsNotBusy}"
+            Style="{StaticResource OutlineButton}"
+            Text="Get Nearby !" />
+
+        <CollectionView
+            Grid.Row="2"
+            BackgroundColor="Transparent"
+            ItemSizingStrategy="MeasureAllItems"
+            ItemsSource="{Binding DataList}"
+            SelectionMode="None"
+            VerticalScrollBarVisibility="Always">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Result">
+                    <Grid Padding="10">
+                        <Frame Padding="5" Style="{StaticResource ResultsCard}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SearchPageViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <Grid
+                                Margin="5"
+                                Padding="0"
+                                ColumnDefinitions="0.75*,0.25*">
+                                <Label
+                                    HorizontalOptions="Start"
+                                    Style="{StaticResource BaseLabelBlack}"
+                                    Text="{Binding Name}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource BaseLabelBlack}"
+                                    Text="{Binding Distance, StringFormat='{0}m'}"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+
+
+</ContentPage>

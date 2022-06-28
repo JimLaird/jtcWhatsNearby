@@ -1,0 +1,14 @@
+﻿global using System.Collections.ObjectModel;
+global using System.ComponentModel;
+global using System.Diagnostics;
+global using System.Runtime.CompilerServices;
+global using System.Text.Json;
+global using CommunityToolkit.Mvvm;
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using CommunityToolkit.Mvvm.Input;
+global using jtcWhatsNearby.ViewModel;
+global using jtcWhatsNearby.View;
+global using jtcWhatsNearby.Model;
+global using jtcWhatsNearby.Config;
+global using jtcWhatsNearby.Services;
+global using jtcWhatsNearby.Helpers;

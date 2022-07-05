@@ -97,7 +97,7 @@ namespace jtcWhatsNearby.ViewModel
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                await Shell.Current.DisplayAlert("Error !", $"Unable to get places: {ex.Message}", "OK");
+                await Shell.Current.DisplayAlert("Error !", $"Unable to get places: Please try another search type", "OK");
             }
             finally
             {

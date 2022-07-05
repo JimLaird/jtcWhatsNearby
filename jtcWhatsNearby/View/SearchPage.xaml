@@ -21,7 +21,7 @@
     <Grid Margin="5" RowDefinitions="Auto,Auto,*">
         <Frame Margin="10" Padding="0">
             <Grid
-                Margin="5"
+                Margin="6"
                 ColumnDefinitions="0.62*,0.38*"
                 ColumnSpacing="5">
                 <!--<Entry
@@ -35,14 +35,14 @@
                     Style="{StaticResource BaseEntry}"
                     Text="{Binding Radius}" />-->
 
-                <dxe:AutoCompleteEdit x:Name="autoType"
-                                      CharacterCasing="Lower"
-                                      Unfocused="autoType_Unfocused"        
+                <dxe:AutoCompleteEdit
+                    x:Name="autoType"
                     BackgroundColor="Transparent"
                     BorderColor="{AppThemeBinding Light={StaticResource Primary},
                                                   Dark={StaticResource PrimaryDark}}"
                     BorderThickness="1"
                     BoxPadding="15"
+                    CharacterCasing="Lower"
                     ClearIconVisibility="Always"
                     CornerMode="Cut"
                     DropDownItemFontFamily="MulishRegular"
@@ -55,7 +55,8 @@
                     Text="{Binding Type}"
                     TextColor="{StaticResource LabelText}"
                     TextFontFamily="MulishBlack"
-                    TextFontSize="16">
+                    TextFontSize="16"
+                    Unfocused="autoType_Unfocused">
                     <dxe:AutoCompleteEdit.ItemsSourceProvider>
                         <dxe:FilteredItemsSourceProvider FilterComparisonType="CurrentCultureIgnoreCase" FilterMode="Contains">
                             <dxe:FilteredItemsSourceProvider.SuggestionsSource>
@@ -162,13 +163,13 @@
                     </dxe:AutoCompleteEdit.ItemsSourceProvider>
                 </dxe:AutoCompleteEdit>
 
-                <dxe:AutoCompleteEdit x:Name="autoRadius"
+                <dxe:AutoCompleteEdit
+                    x:Name="autoRadius"
                     Grid.Column="1"
                     BackgroundColor="Transparent"
                     BorderColor="{AppThemeBinding Light={StaticResource Primary},
                                                   Dark={StaticResource PrimaryDark}}"
                     BorderThickness="1"
-                                      Unfocused="autoRadius_Unfocused"
                     BoxPadding="15"
                     ClearIconVisibility="Always"
                     CornerMode="Cut"
@@ -183,7 +184,8 @@
                     Text="{Binding Radius}"
                     TextColor="{StaticResource LabelText}"
                     TextFontFamily="MulishBlack"
-                    TextFontSize="16">
+                    TextFontSize="16"
+                    Unfocused="autoRadius_Unfocused">
                     <dxe:AutoCompleteEdit.ItemsSourceProvider>
                         <dxe:FilteredItemsSourceProvider FilterComparisonType="CurrentCultureIgnoreCase" FilterMode="Contains">
                             <dxe:FilteredItemsSourceProvider.SuggestionsSource>
